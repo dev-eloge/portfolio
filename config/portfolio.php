@@ -23,8 +23,8 @@ return [
 
     // Courte présentation du hero (affichée en effet machine à écrire)
     'intro' => [
-        'fr' => "Je conçois des applications web complètes, de la base de données à la mise en ligne. J'aime l'IA et je l'utilise chaque jour dans mon travail, avec Claude Code et mes propres agents.",
-        'en' => 'I build complete web applications, from the database to deployment. I love AI and use it every day in my work, with Claude Code and my own agents.',
+        'fr' => "Je conçois des applications web complètes, de la base de données à la mise en ligne, avec l'IA comme outil de travail au quotidien.",
+        'en' => 'I build complete web applications, from the database to deployment, with AI as an everyday working tool.',
     ],
 
     // Texte de la page À propos, un paragraphe par entrée

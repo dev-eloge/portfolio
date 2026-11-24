@@ -11,7 +11,8 @@ export default function Timeline({ experiences, compact = false }) {
                     <span aria-hidden="true" className="absolute -left-[9px] top-1 size-4 rounded-full border-2 border-ink bg-accent" />
                     <p className="flex flex-wrap items-center gap-2 font-mono text-sm">
                         {xp.period}
-                        {xp.current && <Badge featured>{t('En cours')}</Badge>}
+                        {/* Badge réservé aux formations en cours ; pour un emploi, « 2026 – Aujourd'hui » suffit */}
+                        {xp.current && xp.kind === 'education' && <Badge featured>{t('En cours')}</Badge>}
                     </p>
                     <h3 className={compact ? 'mt-1 font-bold' : 'mt-2 font-display text-xl uppercase md:text-2xl'}>{xp.title}</h3>
                     {(xp.company || xp.type) && (

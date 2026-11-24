@@ -1,4 +1,5 @@
 import { Head, useForm, usePage } from '@inertiajs/react';
+import { useEffect, useRef, useState } from 'react';
 import { IconBrandGithub, IconBrandLinkedin, IconCircleCheck, IconMail, IconMapPin } from '@tabler/icons-react';
 import Button from '@/Components/Button';
 import SectionTitle from '@/Components/SectionTitle';
@@ -29,7 +30,7 @@ function Field({ id, label, optional, error, children }) {
 }
 
 export default function Contact() {
-    const { profile, flash } = usePage().props;
+    const { profile } = usePage().props;
     const { t } = useTrans();
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -38,11 +39,30 @@ export default function Contact() {
         message: '',
     });
 
+    // Après l'envoi, la confirmation remplace le formulaire et la page se place dessus
+    const [sent, setSent] = useState(false);
+    const confirmationRef = useRef(null);
+
+    useEffect(() => {
+        if (!sent || !confirmationRef.current) return;
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        confirmationRef.current.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        confirmationRef.current.focus({ preventScroll: true });
+    }, [sent]);
+
     const submit = (e) => {
         e.preventDefault();
         post('/contact', {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                setSent(true);
+            },
+            // Champ mal rempli : le curseur va directement dans le premier champ en erreur
+            onError: (errs) => {
+                const first = ['name', 'email', 'subject', 'message'].find((f) => errs[f]);
+                if (first) document.getElementById(first)?.focus();
+            },
         });
     };
 
@@ -64,13 +84,22 @@ export default function Contact() {
                 <SectionTitle as="h1" title={t('Contact')} separator subtitle={t('Décrivez votre projet ou votre besoin, je vous réponds par e-mail.')} />
 
                 <div className="mt-12 grid gap-12 lg:grid-cols-[1fr_20rem]">
+                    {sent ? (
+                        <div
+                            ref={confirmationRef}
+                            tabIndex={-1}
+                            role="status"
+                            className="h-fit border-2 border-success bg-surface p-6 focus:outline-none md:p-10"
+                        >
+                            <IconCircleCheck size={40} aria-hidden="true" className="text-success" />
+                            <p className="mt-4 font-display text-2xl uppercase md:text-3xl">{t('Message envoyé')}</p>
+                            <p className="mt-2 text-lg leading-relaxed">{t('Merci, je vous réponds rapidement par e-mail.')}</p>
+                            <Button variant="secondary" type="button" onClick={() => setSent(false)} className="mt-8">
+                                {t('Envoyer un autre message')}
+                            </Button>
+                        </div>
+                    ) : (
                     <form onSubmit={submit} noValidate className="space-y-6">
-                        {flash.success && (
-                            <p role="status" className="flex items-center gap-2 border-2 border-success bg-surface p-4 font-bold text-success">
-                                <IconCircleCheck size={22} aria-hidden="true" />
-                                {flash.success}
-                            </p>
-                        )}
 
                         <div className="grid gap-6 sm:grid-cols-2">
                             <Field id="name" label={t('Nom')} error={errors.name}>
@@ -93,6 +122,7 @@ export default function Contact() {
                             {processing ? t('Envoi…') : t('Envoyer')}
                         </Button>
                     </form>
+                    )}
 
                     <aside className="h-fit rotate-1 border-2 border-ink bg-surface p-6 motion-reduce:rotate-0 md:p-8">
                         <h2 className="font-display text-2xl uppercase">{t('Me joindre')}</h2>
