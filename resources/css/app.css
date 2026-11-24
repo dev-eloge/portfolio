@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.{js,jsx}';
+
+/* Mode sombre : classe .dark sur <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens — source de vérité : .claude/skills/portfolio/design/tokens.md */
+@theme {
+    --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+    --font-display: 'Tektur', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+    /* Arrivée des cartes depuis leur côté : léger rebond en fin de course */
+    --ease-spring: cubic-bezier(0.22, 1.25, 0.36, 1);
+
+    /* Curseur de terminal (TypewriterText) */
+    --animate-blink: blink 1s steps(1, end) infinite;
+
+    @keyframes blink {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    --color-paper: #EEEDE8;
+    --color-grid: #D6D5CE;
+    --color-surface: #F8F7F3;
+    --color-ink: #111111;
+    --color-muted: #4A4A45;
+    --color-border: #111111;
+    --color-band: #111111;
+    --color-on-band: #EEEDE8;
+    --color-accent: #D7261E;
+    --color-accent-ink: #B01E17;
+    --color-on-accent: #FFFFFF;
+    --color-success: #15803D;
+    --color-danger: #B91C1C;
+}
+
+.dark {
+    --color-paper: #141413;
+    --color-grid: #2A2A27;
+    --color-surface: #1D1D1B;
+    --color-ink: #F2F1EC;
+    --color-muted: #A9A8A0;
+    --color-border: #F2F1EC;
+    --color-band: #000000;
+    --color-accent: #FF4A3D;
+    --color-accent-ink: #FF6B60;
+    --color-on-accent: #111111;
+    --color-success: #4ADE80;
+    --color-danger: #F87171;
+}
+
+@layer base {
+    /* Mobile : la page ne se décale jamais horizontalement ; double-tap sans zoom.
+       `clip` (et non `hidden`) pour ne pas casser la navbar sticky. */
+    html,
+    body {
+        overflow-x: clip;
+    }
+
+    html {
+        touch-action: manipulation;
+    }
+
+    body {
+        @apply bg-paper text-ink font-sans antialiased;
+        background-image:
+            linear-gradient(var(--color-grid) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    .font-display {
+        font-weight: 800;
+    }
+}
