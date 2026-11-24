@@ -42,7 +42,7 @@ export default function Navbar() {
     return (
         <header className="sticky top-0 z-50 border-b-2 border-ink bg-paper">
             <nav className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8" aria-label={t('Navigation principale')}>
-                <Link href="/" className={cn('font-display text-2xl uppercase', focusRing)}>
+                <Link href="/" className={cn('whitespace-nowrap font-display text-xl uppercase sm:text-2xl', focusRing)}>
                     {profile.name}
                 </Link>
 
@@ -68,7 +68,7 @@ export default function Navbar() {
                     <LanguageSwitch className="hidden sm:flex" />
                     <ThemeToggle />
                     {profile.cv && (
-                        <a href={profile.cv} download className={cn('hidden min-h-11 items-center gap-2 px-2 font-bold sm:inline-flex', focusRing)}>
+                        <a href={profile.cv} download={`CV-${profile.name.replace(/\s+/g, '-')}.pdf`} className={cn('hidden min-h-11 items-center gap-2 px-2 font-bold sm:inline-flex', focusRing)}>
                             <IconDownload size={20} aria-hidden="true" />
                             CV
                         </a>
@@ -112,7 +112,7 @@ export default function Navbar() {
                     <div className="mt-10 flex flex-col items-start gap-4">
                         <Button href="/contact">{t('Me contacter')}</Button>
                         {profile.cv && (
-                            <Button href={profile.cv} variant="link" download>
+                            <Button href={profile.cv} variant="link" download={`CV-${profile.name.replace(/\s+/g, '-')}.pdf`}>
                                 {t('Télécharger le CV')}
                             </Button>
                         )}

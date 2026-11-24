@@ -28,6 +28,15 @@ export default function Button({ variant = 'primary', href, external = false, ar
         </>
     );
 
+    // Téléchargement (ex. CV) : lien HTML classique. <Link> d'Inertia intercepterait le clic
+    // et tenterait d'afficher le fichier comme une page du site.
+    if (href && props.download) {
+        return (
+            <a href={href} className={classes} {...props}>
+                {content}
+            </a>
+        );
+    }
     if (href && external) {
         return (
             <a href={href} target="_blank" rel="noopener noreferrer" className={classes} {...props}>

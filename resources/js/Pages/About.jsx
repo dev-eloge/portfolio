@@ -101,7 +101,7 @@ export default function About({ skillGroups, education, experiences }) {
                         {t('Voir mes projets')}
                     </Button>
                     {profile.cv && (
-                        <Button variant="link" href={profile.cv} download>
+                        <Button variant="link" href={profile.cv} download={`CV-${profile.name.replace(/\s+/g, '-')}.pdf`}>
                             {t('Télécharger le CV')}
                         </Button>
                     )}

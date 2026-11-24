@@ -54,7 +54,7 @@ class ExperienceSeeder extends Seeder
                 'company' => null,
                 'type' => ['fr' => 'Formation', 'en' => 'Education'],
                 'started_at' => '2023-01-01',
-                'ended_at' => '2026-12-31',
+                'ended_at' => null, // en fin de parcours, diplôme pas encore obtenu
             ],
             [
                 'kind' => 'education',

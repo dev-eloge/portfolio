@@ -98,7 +98,7 @@ class PagesTest extends TestCase
         $this->get('/a-propos')->assertInertia(fn (Assert $page) => $page
             ->has('education', 2)
             ->where('education.0.title', 'Licence en génie logiciel')
-            ->where('education.0.period', '2023 – 2026')
+            ->where('education.0.period', "2023 – Aujourd'hui")
             ->has('experiences', 4));
 
         $this->get('/experience')->assertInertia(fn (Assert $page) => $page
