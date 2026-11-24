@@ -11,6 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // En production, le site est derrière le Nginx du serveur (HTTPS) : faire confiance
+        // à ses en-têtes X-Forwarded-*. Le conteneur n'est joignable que depuis 127.0.0.1.
+        $middleware->trustProxies(at: '*');
+
         // Visiteur non connecté sur l'admin : page de connexion de l'admin
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
         $middleware->redirectUsersTo(fn () => route('admin.dashboard'));
