@@ -5,10 +5,9 @@ import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
 import ErrorBoundary from '@/Components/ErrorBoundary';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Portfolio';
-
 createInertiaApp({
-    title: (title) => (title ? `${title} — ${appName}` : appName),
+    // Chaque page fournit son titre complet (composant PageTitle, ou « … — Admin » dans l'admin)
+    title: (title) => title,
     resolve: (name) => {
         const pages = import.meta.glob('./Pages/**/*.jsx', { eager: true });
         return pages[`./Pages/${name}.jsx`];

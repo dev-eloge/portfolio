@@ -1,9 +1,10 @@
-import { Head, Link } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import { IconArrowLeft } from '@tabler/icons-react';
 import Button from '@/Components/Button';
 import Tag from '@/Components/Tag';
 import AppLayout from '@/Layouts/AppLayout';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const steps = [
     { key: 'context', title: 'Contexte' },
@@ -18,7 +19,7 @@ export default function Show({ project }) {
 
     return (
         <AppLayout>
-            <Head title={project.title} />
+            <PageTitle title={project.title} />
             <article className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <Link
                     href="/projets"

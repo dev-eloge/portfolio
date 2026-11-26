@@ -1,4 +1,3 @@
-import { Head } from '@inertiajs/react';
 import { IconCertificate } from '@tabler/icons-react';
 import Badge from '@/Components/Badge';
 import Button from '@/Components/Button';
@@ -7,6 +6,7 @@ import Tag from '@/Components/Tag';
 import AppLayout from '@/Layouts/AppLayout';
 import cn from '@/lib/cn';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const rotations = ['-rotate-1', 'rotate-1', 'rotate-[0.5deg]', '-rotate-[1.5deg]'];
 
@@ -15,7 +15,7 @@ export default function Certifications({ certifications }) {
 
     return (
         <AppLayout>
-            <Head title={t('Certifications')} />
+            <PageTitle title={t('Certifications')} />
             <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <SectionTitle as="h1" title={t('Certifications')} separator />
 

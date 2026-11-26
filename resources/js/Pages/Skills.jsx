@@ -1,10 +1,10 @@
-import { Head } from '@inertiajs/react';
 import { IconBrain, IconCode, IconLayout, IconServer, IconTool } from '@tabler/icons-react';
 import SectionTitle from '@/Components/SectionTitle';
 import Tag from '@/Components/Tag';
 import AppLayout from '@/Layouts/AppLayout';
 import cn from '@/lib/cn';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const icons = { Backend: IconServer, Frontend: IconLayout, IA: IconBrain, Outils: IconTool };
 const rotations = ['-rotate-1', 'rotate-1', 'rotate-[0.5deg]', '-rotate-[1.5deg]'];
@@ -14,7 +14,7 @@ export default function Skills({ skillGroups }) {
 
     return (
         <AppLayout>
-            <Head title={t('Compétences')} />
+            <PageTitle title={t('Compétences')} />
             <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <SectionTitle as="h1" title={t('Compétences')} separator />
 

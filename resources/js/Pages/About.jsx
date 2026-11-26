@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import Button from '@/Components/Button';
 import DevToolsFrame from '@/Components/DevToolsFrame';
 import Sparkles from '@/Components/Sparkles';
@@ -6,6 +6,7 @@ import Tag from '@/Components/Tag';
 import Timeline from '@/Components/Timeline';
 import AppLayout from '@/Layouts/AppLayout';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const colTitle = 'font-display text-3xl uppercase leading-[0.9] md:text-4xl';
 
@@ -16,7 +17,7 @@ export default function About({ skillGroups, education, experiences }) {
 
     return (
         <AppLayout>
-            <Head title={t('À propos')} />
+            <PageTitle title={t('À propos')} />
             <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <h1 className="sr-only">{t('À propos')}</h1>
                 <Sparkles />

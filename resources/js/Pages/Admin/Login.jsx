@@ -10,7 +10,7 @@ export default function Login() {
 
     return (
         <main className="flex min-h-screen items-center justify-center bg-paper px-4">
-            <Head title="Connexion">
+            <Head title="Connexion — Admin">
                 <meta name="robots" content="noindex, nofollow" />
             </Head>
             <form

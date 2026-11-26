@@ -4,7 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title inertia>{{ config('app.name', 'Portfolio') }}</title>
+        <title inertia>{{ \App\Support\Profile::get('name', config('app.name')) }}</title>
+
+        {{-- Icône d'onglet : photo ronde (générée depuis public/images/eloge-face.webp) --}}
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+        <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
         {{-- Applique le thème choisi avant l'affichage (évite un flash). Jour par défaut. --}}
         <script>

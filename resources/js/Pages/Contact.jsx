@@ -1,4 +1,4 @@
-import { Head, useForm, usePage } from '@inertiajs/react';
+import { useForm, usePage } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import { IconBrandGithub, IconBrandLinkedin, IconCircleCheck, IconMail, IconMapPin } from '@tabler/icons-react';
 import Button from '@/Components/Button';
@@ -6,6 +6,7 @@ import SectionTitle from '@/Components/SectionTitle';
 import AppLayout from '@/Layouts/AppLayout';
 import cn from '@/lib/cn';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const input =
     'w-full min-h-11 border-2 border-ink bg-surface px-4 py-2.5 text-ink placeholder:text-muted ' +
@@ -79,7 +80,7 @@ export default function Contact() {
 
     return (
         <AppLayout>
-            <Head title={t('Contact')} />
+            <PageTitle title={t('Contact')} />
             <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <SectionTitle as="h1" title={t('Contact')} separator subtitle={t('Décrivez votre projet ou votre besoin, je vous réponds par e-mail.')} />
 

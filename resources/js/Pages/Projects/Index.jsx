@@ -1,10 +1,10 @@
-import { Head } from '@inertiajs/react';
 import CategoryFilter from '@/Components/CategoryFilter';
 import ProjectCard from '@/Components/ProjectCard';
 import SectionTitle from '@/Components/SectionTitle';
 import AppLayout from '@/Layouts/AppLayout';
 import useSideReveal from '@/lib/useSideReveal';
 import useTrans from '@/lib/useTrans';
+import PageTitle from '@/Components/PageTitle';
 
 const rotations = ['-rotate-3', 'rotate-2', 'rotate-[4deg]', '-rotate-2', 'rotate-3', '-rotate-[4deg]'];
 
@@ -14,7 +14,7 @@ export default function Index({ projects, categories, activeCategory, total }) {
 
     return (
         <AppLayout>
-            <Head title={t('Projets')} />
+            <PageTitle title={t('Projets')} />
             <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
                 <SectionTitle as="h1" title={t('Projets')} separator subtitle={total > 0 ? t(total > 1 ? ':count projets publiés' : ':count projet publié', { count: total }) : null} />
 
